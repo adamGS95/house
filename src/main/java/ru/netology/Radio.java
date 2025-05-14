@@ -24,7 +24,11 @@ public class Radio {
         if (newCurrentVolume >= 0) {
             if (newCurrentVolume <= 100) {
                 currentVolume = newCurrentVolume;
+            } else {
+                currentVolume = 100;
             }
+        } else {
+            currentVolume = 0;
         }
     }
 
