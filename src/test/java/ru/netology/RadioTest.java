@@ -6,6 +6,22 @@ import org.junit.jupiter.api.Test;
 public class RadioTest {
 
     @Test
+    void testDefaultConstructor() {
+        Radio radio = new Radio();
+        Assertions.assertEquals(10, radio.getNumStations());
+        Assertions.assertEquals(0, radio.getCurrentStation());
+        Assertions.assertEquals(0, radio.getCurrentVolume());
+    }
+
+    @Test
+    void testCustomConstructor() {
+        Radio radio = new Radio(15);
+        Assertions.assertEquals(15, radio.getNumStations());
+        Assertions.assertEquals(0, radio.getCurrentStation());
+        Assertions.assertEquals(0, radio.getCurrentVolume());
+    }
+
+    @Test
     public void shouldSetStation() {
         Radio radio = new Radio();
         radio.setCurrentStation(4);
@@ -14,6 +30,21 @@ public class RadioTest {
         int actual = radio.getCurrentStation();
         Assertions.assertEquals(expected, actual);
     }
+
+    @Test
+    void testSetStationAtZero() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(0);
+        Assertions.assertEquals(0, radio.getCurrentStation());
+    }
+
+    @Test
+    void testSetStationAtMax() {
+        Radio radio = new Radio(11);
+        radio.setCurrentStation(10);
+        Assertions.assertEquals(10, radio.getCurrentStation());
+    }
+
 
     @Test
     public void shouldNotSetStationBelowZero() {
@@ -151,6 +182,24 @@ public class RadioTest {
         int expected = 0;
         int actual = radio.getCurrentVolume();
         Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void testConstructorWithPositiveNumStations() {
+        Radio radio = new Radio(15);
+        Assertions.assertEquals(15, radio.getNumStations());
+    }
+
+    @Test
+    void testConstructorWithZeroNumStations() {
+        Radio radio = new Radio(0);
+        Assertions.assertEquals(10, radio.getNumStations());
+    }
+
+    @Test
+    void testConstructorWithNegativeNumStations() {
+        Radio radio = new Radio(-5);
+        Assertions.assertEquals(10, radio.getNumStations());
     }
 }
 
